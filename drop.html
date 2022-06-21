@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+
+<link rel="stylesheet" href="Assets/lightbox.css">
+<link rel="stylesheet" href="Assets/dropzone.css">
+<script src="main.js"></script>
+<script src="lookup.js"></script>
+<script src='Assets/lightbox.js'></script>
+<script src="Assets/dropzone.js"></script>
+
+<form action="/Index/FileUpload"
+      class="dropzone"
+      id="upload-Invoices" data-ajax-method="POST" data-ajax="true">
+    <input type="submit" value="Upload File to Server" id="btnUpload">
+</form>
+
+<script>
+Dropzone.autoDiscover = false;
+
+var myDropzone = new Dropzone('#upload-Invoices', {       
+    paramName: "files", 
+    maxFilesize: 3.0, 
+    maxFiles: 4,
+    parallelUploads: 10000,
+    uploadMultiple: true,
+    autoProcessQueue: false
+});
+
+$('#btnUpload').on('click', function () {
+    myDropzone.processQueue();
+});
+
+
+</script>
